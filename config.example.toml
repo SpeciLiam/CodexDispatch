@@ -1,0 +1,42 @@
+# Copy this file to config.toml and fill in your Telegram values.
+
+# Keep the token out of git. You can either set TELEGRAM_BOT_TOKEN in your
+# shell/launchd environment or paste it here locally in config.toml.
+telegram_bot_token = ""
+
+# Strongly recommended: restrict the bot to your Telegram user/chat id.
+# Start with an empty list, run the bot, send /whoami, then paste the id here.
+allowed_chat_ids = []
+
+# iMessage bridge. Keep the "codex" prefix so normal texts never dispatch.
+# Add your own phone number or Apple ID email before using this away from home.
+imessage_prefix = "codex"
+imessage_allowed_senders = []
+imessage_allow_from_me = true
+imessage_poll_seconds = 3
+imessage_db_path = "/Users/liamvan/Library/Messages/chat.db"
+
+# Where run logs and final messages are stored.
+runs_dir = "runs"
+
+# Default Codex behavior.
+default_repo = "skills"
+default_sandbox = "workspace-write"
+default_approval = "never"
+codex_bin = "codex"
+
+# While a run is active, the bot sends a small tail update when the log changes.
+monitor_interval_seconds = 90
+monitor_tail_lines = 18
+
+[repos]
+skills = "/Users/liamvan/Documents/Repos/CodexSkills"
+dispatch = "/Users/liamvan/Documents/Repos/CodexDispatch"
+
+[shortcuts]
+# Phone-friendly prompt aliases. Send "codex viz" instead of typing the whole thing.
+viz = "Run the application visualizer refresh, then tell me what changed."
+apps = "Review application-trackers/applications.md for high-priority next actions and summarize the top 5."
+gmail = "Run the Gmail application refresh workflow and summarize tracker updates."
+lint = "Inspect the repo, run the most relevant lightweight checks, and summarize any failures."
+status = "Check git status, summarize changed files, and mention anything that looks risky."
