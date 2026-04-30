@@ -149,7 +149,7 @@ Keep that terminal open while you are out. For a more permanent setup, run it in
 
 - Only chats listed in `allowed_chat_ids` can run Codex.
 - Repos must be listed in `[repos]`.
-- Runs use `codex exec --sandbox workspace-write --ask-for-approval never` by default.
+- Runs use `codex exec --sandbox workspace-write` by default.
 - Logs are written under `runs/<run-id>/`.
 
 This is designed for your own trusted machine. Do not expose the bot token or add group chats unless you really mean it.

@@ -22,7 +22,6 @@ runs_dir = "runs"
 # Default Codex behavior.
 default_repo = "skills"
 default_sandbox = "workspace-write"
-default_approval = "never"
 codex_bin = "codex"
 
 # While a run is active, the bot sends a small tail update when the log changes.

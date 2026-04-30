@@ -263,8 +263,6 @@ def run_codex(run: Run, config: Config, telegram: Telegram, state: State) -> Non
             str(run.repo_path),
             "--sandbox",
             config.default_sandbox,
-            "--ask-for-approval",
-            config.default_approval,
             "-o",
             str(final_path),
             run.prompt,
