@@ -38,7 +38,7 @@ class Config:
     runs_dir: Path
     default_repo: str
     default_sandbox: str
-    default_approval: str
+    dispatch_model: str
     monitor_interval_seconds: int
     monitor_tail_lines: int
     codex_bin: str
@@ -95,7 +95,7 @@ def load_config(path: Path, *, require_telegram: bool = True) -> Config:
         runs_dir=(ROOT / data.get("runs_dir", "runs")).resolve(),
         default_repo=default_repo,
         default_sandbox=data.get("default_sandbox", "workspace-write"),
-        default_approval=data.get("default_approval", "never"),
+        dispatch_model=str(data.get("dispatch_model", "gpt-5.5")),
         monitor_interval_seconds=int(data.get("monitor_interval_seconds", 90)),
         monitor_tail_lines=int(data.get("monitor_tail_lines", 18)),
         codex_bin=data.get("codex_bin", "codex"),
@@ -251,6 +251,8 @@ def run_codex(run: Run, config: Config, telegram: Telegram, state: State) -> Non
             "exec",
             "resume",
             "--last",
+            "-m",
+            config.dispatch_model,
             "-o",
             str(final_path),
             run.prompt,
@@ -263,6 +265,8 @@ def run_codex(run: Run, config: Config, telegram: Telegram, state: State) -> Non
             str(run.repo_path),
             "--sandbox",
             config.default_sandbox,
+            "-m",
+            config.dispatch_model,
             "-o",
             str(final_path),
             run.prompt,
@@ -274,6 +278,7 @@ def run_codex(run: Run, config: Config, telegram: Telegram, state: State) -> Non
         process = subprocess.Popen(
             cmd,
             cwd=run.repo_path,
+            stdin=subprocess.DEVNULL,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True,

@@ -22,6 +22,7 @@ runs_dir = "runs"
 # Default Codex behavior.
 default_repo = "skills"
 default_sandbox = "workspace-write"
+dispatch_model = "gpt-5.5"
 codex_bin = "codex"
 
 # While a run is active, the bot sends a small tail update when the log changes.
